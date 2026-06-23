@@ -15,10 +15,10 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: 'JetBrains Mono', 'Consolas', ui-monospace, monospace;
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.65;
+  line-height: 1.72;
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -27,11 +27,11 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 p { margin: 0; }
@@ -138,7 +138,7 @@ html[data-theme='light'] {
 
 .eyebrow {
   display: inline-block;
-  font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: .8rem;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -281,7 +281,7 @@ html[data-theme='light'] {
 }
 
 .logo {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
   font-size: 1.18rem;
   letter-spacing: -0.02em;
@@ -425,6 +425,7 @@ html[data-theme='light'] .theme-toggle .icon-moon { display: none; }
 .hero-title {
   margin-top: 1.4rem;
   font-size: clamp(2.1rem, 6vw, 3.7rem);
+  letter-spacing: -0.03em;
 }
 .hero-subtitle {
   margin-top: 1.4rem;
@@ -985,7 +986,7 @@ html[data-theme='light'] .ai-inner {
 .stat-card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--card-hover); }
 .stat-card strong {
   display: block;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1.6rem;
   color: var(--accent);
   line-height: 1;
@@ -1011,7 +1012,7 @@ html[data-theme='light'] .ai-inner {
   padding: 1.2rem 1.3rem;
   background: linear-gradient(transparent, rgba(5, 8, 18, 0.92));
 }
-.profile-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; }
+.profile-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff; }
 .profile-role { color: #cbd5e1; font-size: .85rem; }
 
 /* === Contato =========================================================== */
