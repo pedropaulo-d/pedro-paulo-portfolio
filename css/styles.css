@@ -76,7 +76,7 @@ html[data-theme='dark'] {
   --card-hover: #131F33;
   --text: #F8FAFC;
   --text-2: #94A3B8;
-  --text-soft: #64748B;
+  --text-soft: #7C8BA1;
   --accent: #38BDF8;
   --accent-2: #22C55E;
   --border: rgba(148, 163, 184, 0.16);
@@ -101,7 +101,7 @@ html[data-theme='light'] {
   --card-hover: #FFFFFF;
   --text: #0B1220;
   --text-2: #475569;
-  --text-soft: #64748B;
+  --text-soft: #5B6675;
   --accent: #0284C7;
   --accent-2: #16A34A;
   --border: rgba(15, 23, 42, 0.12);
@@ -439,6 +439,17 @@ html[data-theme='light'] .theme-toggle .icon-moon { display: none; }
   gap: .8rem;
   margin-top: 2rem;
 }
+.hero-cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: 1.1rem;
+  color: var(--text-2);
+  font-size: .9rem;
+  font-weight: 500;
+}
+.hero-cv-link svg { color: var(--accent); }
+.hero-cv-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
 .hero-facts {
   display: grid;
@@ -505,16 +516,6 @@ html[data-theme='light'] .theme-toggle .icon-moon { display: none; }
   vertical-align: text-bottom;
   background: var(--accent);
   animation: blink 1.1s steps(1) infinite;
-}
-.terminal-status {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: .9rem 1.4rem 1.2rem;
-  border-top: 1px solid var(--border);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .76rem;
-  color: var(--text-2);
 }
 .status { display: inline-flex; align-items: center; gap: .45rem; }
 .status-dot {
@@ -676,6 +677,67 @@ html[data-theme='light'] .theme-toggle .icon-moon { display: none; }
   color: var(--accent);
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.22);
+}
+
+/* === Carrossel scroll-snap (subgrupos de projetos) ===================== */
+.carousel { position: relative; }
+.carousel--spaced { margin-top: 3.5rem; }
+
+.carousel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.carousel-head .group-title { margin: 0; }
+
+.carousel-nav { display: none; gap: .5rem; }
+
+.carousel-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: rgba(148, 163, 184, 0.04);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .2s ease, border-color .2s ease, color .2s ease,
+    background-color .2s ease, opacity .2s ease;
+}
+.carousel-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.carousel-btn:active:not(:disabled) { transform: translateY(0); }
+.carousel-btn:disabled { opacity: .35; cursor: default; }
+.carousel-btn svg { width: 18px; height: 18px; }
+
+/* Trilha rolável: 1 card (+ peek) no mobile → mais cards conforme a largura.
+   Basta adicionar <article class="project-card"> que o overflow é tratado. */
+.cards-rail {
+  --rail-gap: 1.4rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 86%;
+  gap: var(--rail-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  /* respiro vertical: o hover levanta o card (-6px) e há sombra a absorver;
+     o padding lateral evita corte do foco e é compensado pela margem negativa */
+  padding: .5rem .25rem 1rem;
+  margin-inline: -.25rem;
+  scrollbar-width: none;            /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+.cards-rail::-webkit-scrollbar { display: none; }  /* WebKit */
+
+.cards-rail > .project-card {
+  min-width: 0;
+  scroll-snap-align: start;
 }
 
 /* === Stack ============================================================== */
@@ -1027,6 +1089,7 @@ html[data-theme='light'] .ai-inner {
 .hero-content > *:nth-child(3) { animation-delay: .26s; }
 .hero-content > *:nth-child(4) { animation-delay: .34s; }
 .hero-content > *:nth-child(5) { animation-delay: .42s; }
+.hero-content > *:nth-child(6) { animation-delay: .50s; }
 
 /* Timeline: a linha "desenha" ao entrar na viewport (itens fazem stagger à parte) */
 .js .timeline::before { transform: scaleY(0); transform-origin: top; transition: transform .9s ease; }
@@ -1077,8 +1140,18 @@ html[data-theme='light'] .ai-inner {
   body.nav-open { overflow: hidden; }
 }
 
+/* Alvos de toque maiores e grade de stats mais respirada no mobile */
+@media (max-width: 600px) {
+  .theme-toggle, .menu-toggle { width: 44px; height: 44px; }
+  .btn-sm { padding-block: .72rem; }
+}
+@media (max-width: 380px) {
+  .stats { grid-template-columns: 1fr; }
+}
+
 @media (min-width: 600px) {
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .cards-rail { grid-auto-columns: calc((100% - var(--rail-gap)) / 2); }
   .formacao-grid { grid-template-columns: 1fr 1.3fr; }
   .hero-facts { grid-template-columns: 1fr 1fr; }
 }
@@ -1091,6 +1164,9 @@ html[data-theme='light'] .ai-inner {
   .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 3.5rem; }
   .about-grid { grid-template-columns: 1.4fr 1fr; gap: 3.5rem; }
   .cards-grid { grid-template-columns: repeat(3, 1fr); }
+  .cards-rail { grid-auto-columns: calc((100% - 2 * var(--rail-gap)) / 3); }
+  .carousel-nav { display: inline-flex; }
+  .carousel-nav[hidden] { display: none; }
   .stack-grid { grid-template-columns: repeat(3, 1fr); }
   .stack-top { grid-template-columns: 1.1fr .9fr; gap: 3rem; }
 }

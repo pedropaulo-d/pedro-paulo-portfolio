@@ -13,9 +13,13 @@
         — o tema inicial já foi aplicado pelo script anti-FOUC no <head>.
      ---------------------------------------------------------------------- */
   var themeToggle = document.getElementById('theme-toggle');
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
   function syncTheme() {
     var isLight = root.getAttribute('data-theme') === 'light';
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', isLight ? '#F4F7FB' : '#050812');
+    }
     if (themeToggle) {
       themeToggle.setAttribute('aria-pressed', String(isLight));
       themeToggle.setAttribute(
@@ -212,4 +216,48 @@
       }
     });
   }
+
+  /* ----------------------------------------------------------------------
+     8) Carrossel scroll-snap (subgrupo de Landing Pages)
+        — setas no desktop, swipe no mobile; a navegação some quando todos
+          os cards já cabem (sem overflow). Robusto a novos <article>.
+     ---------------------------------------------------------------------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-carousel]'), function (carousel) {
+    var rail = carousel.querySelector('[data-carousel-rail]');
+    if (!rail) { return; }
+
+    var nav = carousel.querySelector('.carousel-nav');
+    var prevBtn = carousel.querySelector('[data-carousel-prev]');
+    var nextBtn = carousel.querySelector('[data-carousel-next]');
+
+    function maxScroll() { return rail.scrollWidth - rail.clientWidth; }
+
+    function update() {
+      var overflow = maxScroll() > 4;
+      if (nav) { nav.hidden = !overflow; }
+      if (!overflow) { return; }
+      var x = rail.scrollLeft;
+      if (prevBtn) { prevBtn.disabled = x <= 1; }
+      if (nextBtn) { nextBtn.disabled = x >= maxScroll() - 1; }
+    }
+
+    function page(dir) {
+      var amount = Math.max(rail.clientWidth * 0.85, 240);
+      rail.scrollBy({ left: dir * amount, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    if (prevBtn) { prevBtn.addEventListener('click', function () { page(-1); }); }
+    if (nextBtn) { nextBtn.addEventListener('click', function () { page(1); }); }
+
+    var ticking = false;
+    rail.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () { update(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', update);
+    update();
+  });
 })();

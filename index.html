@@ -22,6 +22,28 @@
   <!-- ===== Favicon ===== -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
+  <!-- ===== Dados estruturados (JSON-LD) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pedro Paulo Lopes Alves",
+    "jobTitle": "Data Engineer",
+    "email": "mailto:paulopedro.dev@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Porto Velho",
+      "addressRegion": "RO",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://linkedin.com/in/pedropaulo-d",
+      "https://github.com/pedropaulo-d"
+    ],
+    "knowsAbout": ["Engenharia de Dados", "ETL", "Python", "SQL", "PostgreSQL", "Docker", "Landing Pages"]
+  }
+  </script>
+
   <!-- ===== Fonts (Google Fonts) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,13 +87,14 @@
           <li><a class="nav-link" href="#projetos">Projetos</a></li>
           <li><a class="nav-link" href="#stack">Stack</a></li>
           <li><a class="nav-link" href="#experiencia">Experiência</a></li>
+          <li><a class="nav-link" href="#formacao">Formação</a></li>
           <li><a class="nav-link" href="#sobre">Sobre</a></li>
           <li><a class="nav-link" href="#contato">Contato</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a class="btn btn-ghost btn-sm cv-link" href="assets/cv-pedro-paulo.pdf" download>CV</a>
+        <a class="btn btn-ghost btn-sm cv-link" href="assets/cv-pedro-paulo.pdf" target="_blank" rel="noopener">CV</a>
 
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema claro e escuro" aria-pressed="false">
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -116,11 +139,11 @@
           <div class="hero-cta">
             <a class="btn btn-primary" href="#projetos">Ver projetos</a>
             <a class="btn btn-ghost" href="#contato">Falar comigo</a>
-            <a class="btn btn-soft" href="assets/cv-pedro-paulo.pdf" download>
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-              Baixar currículo
-            </a>
           </div>
+          <a class="hero-cv-link" href="assets/cv-pedro-paulo.pdf" download>
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Baixar currículo (PDF)
+          </a>
 
           <ul class="hero-facts" aria-label="Informações rápidas">
             <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Porto Velho, RO</li>
@@ -150,7 +173,7 @@
     <section class="section" id="projetos">
       <div class="container">
         <header class="section-header" data-animate>
-          <p class="eyebrow">Selected work</p>
+          <p class="eyebrow">Trabalhos selecionados</p>
           <h2 class="section-title">O que tenho construído.</h2>
           <p class="section-lead">
             Projetos que unem dados, automação e presença digital. De pipelines e análises a landing
@@ -158,11 +181,23 @@
           </p>
         </header>
 
-        <!-- Subgrupo: Web & Landing Pages -->
-        <h3 class="group-title" data-animate><span class="group-bar"></span> Web &amp; Landing Pages</h3>
-        <div class="cards-grid">
+        <!-- Subgrupo: Web & Landing Pages — carrossel scroll-snap -->
+        <div class="carousel" data-carousel>
+          <div class="carousel-head" data-animate>
+            <h3 class="group-title"><span class="group-bar"></span> Web &amp; Landing Pages</h3>
+            <div class="carousel-nav">
+              <button class="carousel-btn" type="button" data-carousel-prev aria-label="Ver os projetos anteriores">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="carousel-btn" type="button" data-carousel-next aria-label="Ver os próximos projetos">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="cards-rail" data-carousel-rail role="region" aria-label="Projetos de web e landing pages — role para o lado para ver mais" tabindex="0">
           <!-- Card 1 -->
-          <article class="project-card" data-animate>
+          <article class="project-card">
             <div class="project-media">
               <img src="assets/project-ballet.webp" alt="Prévia da landing page Petit Allegro, de ballet infantil em Porto Velho" loading="lazy" width="1600" height="795" />
             </div>
@@ -177,13 +212,12 @@
               </ul>
               <div class="project-actions">
                 <a class="btn btn-primary btn-sm" href="https://karolini-fernandes.vercel.app/" target="_blank" rel="noopener">Ver projeto</a>
-                <a class="btn btn-ghost btn-sm" href="#">Detalhes</a>
               </div>
             </div>
           </article>
 
           <!-- Card 2 -->
-          <article class="project-card" data-animate>
+          <article class="project-card">
             <div class="project-media">
               <img src="assets/project-beleza.webp" alt="Prévia do site Studio Helena Fernandes, de beleza e cosméticos" loading="lazy" width="1600" height="741" />
             </div>
@@ -198,15 +232,14 @@
               </ul>
               <div class="project-actions">
                 <a class="btn btn-primary btn-sm" href="https://studiohelenafernandes.com.br/" target="_blank" rel="noopener">Ver projeto</a>
-                <a class="btn btn-ghost btn-sm" href="#">Detalhes</a>
               </div>
             </div>
           </article>
 
           <!-- Card 3 (CTA) -->
-          <article class="project-card project-card--cta" data-animate>
+          <article class="project-card project-card--cta">
             <div class="project-body">
-              <span class="cta-badge">Vaga aberta</span>
+              <span class="cta-badge">Aceitando projetos</span>
               <h4 class="project-title">Seu projeto pode ser o próximo</h4>
               <p class="project-desc">
                 Criação de sites institucionais, landing pages e páginas digitais sob demanda para
@@ -220,13 +253,26 @@
               </div>
             </div>
           </article>
+          </div>
         </div>
 
-        <!-- Subgrupo: Dados & Engenharia -->
-        <h3 class="group-title group-title--spaced" data-animate><span class="group-bar group-bar--green"></span> Dados &amp; Engenharia</h3>
-        <div class="cards-grid">
+        <!-- Subgrupo: Dados & Engenharia — carrossel scroll-snap -->
+        <div class="carousel carousel--spaced" data-carousel>
+          <div class="carousel-head" data-animate>
+            <h3 class="group-title"><span class="group-bar group-bar--green"></span> Dados &amp; Engenharia</h3>
+            <div class="carousel-nav">
+              <button class="carousel-btn" type="button" data-carousel-prev aria-label="Ver os projetos anteriores">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="carousel-btn" type="button" data-carousel-next aria-label="Ver os próximos projetos">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="cards-rail" data-carousel-rail role="region" aria-label="Projetos de dados e engenharia — role para o lado para ver mais" tabindex="0">
           <!-- Projeto recente em destaque -->
-          <article class="project-card project-card--data" data-animate>
+          <article class="project-card project-card--data">
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -247,13 +293,12 @@
                   <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                   GitHub
                 </a>
-                <a class="btn btn-ghost btn-sm" href="#">Detalhes</a>
               </div>
             </div>
           </article>
 
           <!-- Card 1 -->
-          <article class="project-card project-card--data" data-animate>
+          <article class="project-card project-card--data">
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
@@ -272,13 +317,12 @@
                   <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                   GitHub
                 </a>
-                <a class="btn btn-ghost btn-sm" href="#">Detalhes</a>
               </div>
             </div>
           </article>
 
           <!-- Card 2 -->
-          <article class="project-card project-card--data" data-animate>
+          <article class="project-card project-card--data">
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
@@ -297,30 +341,10 @@
                   <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                   GitHub
                 </a>
-                <a class="btn btn-ghost btn-sm" href="#">Detalhes</a>
               </div>
             </div>
           </article>
-
-          <!-- Card 3 -->
-          <article class="project-card project-card--data" data-animate>
-            <div class="project-body">
-              <div class="data-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </div>
-              <h4 class="project-title">Dados Geoespaciais com PostGIS</h4>
-              <p class="project-desc">
-                Experiência prática com extração, tratamento e modelagem de dados georreferenciados,
-                usando Python, SQL e PostGIS para apoiar sistemas de visualização e análise espacial.
-              </p>
-              <ul class="tags">
-                <li>PostGIS</li><li>SQL</li><li>Python</li><li>Geodata</li>
-              </ul>
-              <div class="project-actions">
-                <a class="btn btn-ghost btn-sm" href="#">Detalhes</a>
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -422,7 +446,7 @@
     <section class="section" id="experiencia">
       <div class="container">
         <header class="section-header" data-animate>
-          <p class="eyebrow">Career</p>
+          <p class="eyebrow">Trajetória</p>
           <h2 class="section-title">Minha trajetória até aqui.</h2>
         </header>
 
@@ -551,7 +575,7 @@
           </p>
 
           <ul class="stats">
-            <li class="stat-card"><strong>2+</strong><span>anos de experiência prática com tecnologia e dados</span></li>
+            <li class="stat-card"><strong>3+</strong><span>anos de experiência prática com tecnologia e dados</span></li>
             <li class="stat-card"><strong>SI</strong><span>graduando em Sistemas de Informação</span></li>
             <li class="stat-card"><strong>ETL</strong><span>experiência com ETL, APIs e automações</span></li>
             <li class="stat-card"><strong>Web</strong><span>freelas em sites institucionais e landing pages</span></li>
@@ -630,6 +654,7 @@
           <li><a href="#projetos">Projetos</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#experiencia">Experiência</a></li>
+          <li><a href="#formacao">Formação</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
