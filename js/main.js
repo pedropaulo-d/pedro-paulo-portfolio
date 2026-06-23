@@ -184,16 +184,17 @@
   if (yearEl) { yearEl.textContent = String(new Date().getFullYear()); }
 
   /* ----------------------------------------------------------------------
-     7) Copiar usuário do Discord para a área de transferência
+     7) Discord — clique abre meu perfil em nova aba; se o pop-up for
+        bloqueado (window.open === null), copia o usuário como fallback.
      ---------------------------------------------------------------------- */
   var copyBtn = document.querySelector('.js-copy-discord');
   if (copyBtn) {
     var labelEl = copyBtn.querySelector('.copy-label');
     var defaultLabel = labelEl ? labelEl.textContent : 'Discord';
 
-    var showCopied = function () {
+    var flashLabel = function (text) {
       if (!labelEl) return;
-      labelEl.textContent = 'Copiado!';
+      labelEl.textContent = text;
       copyBtn.classList.add('copied');
       window.setTimeout(function () {
         labelEl.textContent = defaultLabel;
@@ -201,10 +202,13 @@
       }, 1600);
     };
 
-    copyBtn.addEventListener('click', function () {
+    var copyUsername = function () {
       var user = copyBtn.getAttribute('data-username') || '';
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(user).then(showCopied, showCopied);
+        navigator.clipboard.writeText(user).then(
+          function () { flashLabel('Copiado!'); },
+          function () { flashLabel('Copiado!'); }
+        );
       } else {
         var tmp = document.createElement('input');
         tmp.value = user;
@@ -212,8 +216,37 @@
         tmp.select();
         try { document.execCommand('copy'); } catch (e) { /* noop */ }
         document.body.removeChild(tmp);
-        showCopied();
+        flashLabel('Copiado!');
       }
+    };
+
+    copyBtn.addEventListener('click', function () {
+      var userId = copyBtn.getAttribute('data-userid') || '';
+      if (userId) {
+        var win = window.open('https://discord.com/users/' + userId, '_blank', 'noopener');
+        if (win) { return; } // perfil abriu; nada mais a fazer
+      }
+      copyUsername(); // sem ID ou pop-up bloqueado → fallback
+    });
+  }
+
+  /* ----------------------------------------------------------------------
+     7b) Botão "Enviar e-mail" — abre o compositor do Gmail em nova aba.
+         Não depende de app de e-mail padrão (problema comum do mailto:).
+         O href mailto: do HTML permanece como fallback sem JS.
+     ---------------------------------------------------------------------- */
+  var emailBtn = document.querySelector('.js-email');
+  if (emailBtn) {
+    emailBtn.addEventListener('click', function (e) {
+      var href = emailBtn.getAttribute('href') || '';
+      var to = href.replace(/^mailto:/i, '').split('?')[0];
+      if (!to) { return; }
+      var subject = emailBtn.getAttribute('data-subject') || '';
+      var url = 'https://mail.google.com/mail/?view=cm&fs=1&to=' +
+        encodeURIComponent(to) + '&su=' + encodeURIComponent(subject);
+      var win = window.open(url, '_blank', 'noopener');
+      // Só impede o mailto: se a aba do Gmail realmente abriu.
+      if (win) { e.preventDefault(); }
     });
   }
 
