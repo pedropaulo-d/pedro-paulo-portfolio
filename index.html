@@ -213,7 +213,7 @@
           <!-- Projeto recente em destaque -->
           <article class="project-card project-card--data">
             <div class="project-media">
-              <img src="assets/dashboard-individual.png" alt="Prévia do dashboard do pipeline da B3: indicadores de PETR4 (retorno acumulado, drawdown, volatilidade e dividend yield) e gráfico de preço com médias móveis" loading="lazy" width="1902" height="1035" />
+              <img src="assets/project-b3.webp" alt="Diagrama do B3 Data Pipeline: ingestão pela API yfinance, camada raw em Parquet no MinIO, warehouse em DuckDB, modelagem Star Schema com dbt e indicadores de médias móveis, volatilidade, drawdown e dividend yield" loading="lazy" width="1280" height="801" />
             </div>
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
@@ -241,18 +241,24 @@
 
           <!-- Card 1 -->
           <article class="project-card project-card--data">
+            <div class="project-media">
+              <img src="assets/project-marketing-dw.webp" alt="Diagrama do data warehouse de marketing: APIs do Meta Ads e do Google Ads extraídas com Python para a camada Bronze em JSONB, views Silver no dbt e camada Gold em Snowflake Schema, alimentando um painel de desempenho por canal" loading="lazy" width="1280" height="801" />
+            </div>
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
               </div>
-              <h4 class="project-title">Motor ETL Ads Containerizado</h4>
+              <h4 class="project-title">Data Warehouse de Marketing (ELT)</h4>
               <p class="project-desc">
-                Motor de extração de métricas diárias de Meta Ads e Google Ads, com carga em PostgreSQL,
-                UPSERT idempotente, modelagem em Star Schema, Docker, logs seguros e validação de
-                variáveis de ambiente.
+                Pipeline ELT que consolida Meta Ads e Google Ads em um data warehouse PostgreSQL:
+                extração incremental pelas APIs nativas, orquestração no Airflow e transformações
+                com dbt nas camadas Bronze, Silver e Gold. A bronze guarda o payload bruto em JSONB
+                append-only, o que permite reprocessar tudo sem chamar a API de novo; a gold entrega um
+                Snowflake Schema com 6 dimensões encadeadas, SCD Tipo 2 para versionar o histórico das
+                campanhas e 72 testes de qualidade no dbt. Tudo containerizado com Docker.
               </p>
               <ul class="tags">
-                <li>Python</li><li>PostgreSQL</li><li>Docker</li><li>APIs</li><li>ETL/ELT</li>
+                <li>Python</li><li>Airflow</li><li>dbt</li><li>PostgreSQL</li><li>Docker</li><li>ELT</li>
               </ul>
               <div class="project-actions">
                 <a class="btn btn-primary btn-sm" href="https://github.com/pedropaulo-d/pipeline_marketing" target="_blank" rel="noopener">
@@ -265,18 +271,52 @@
 
           <!-- Card 2 -->
           <article class="project-card project-card--data">
+            <div class="project-media">
+              <img src="assets/project-lighthouse.webp" alt="Fluxo do Desafio Lighthouse em seis etapas: ingestão de 24 arquivos CSV, geração do schema, carga no PostgreSQL via COPY, análise em SQL, previsão de demanda e recomendação, terminando em um dashboard executivo" loading="lazy" width="1280" height="801" />
+            </div>
+            <div class="project-body">
+              <div class="data-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+              </div>
+              <h4 class="project-title">Desafio Lighthouse · Dados e IA</h4>
+              <p class="project-desc">
+                Desafio técnico ponta a ponta para a LH Nautical, do CSV bruto ao dashboard executivo:
+                gerador de schema escrito só com a biblioteca padrão do Python, carga no PostgreSQL via
+                COPY em transação única, análises em SQL com dimensão de calendário, previsão de demanda
+                validada em walk-forward (sem data leakage) e recomendação de produtos por similaridade
+                de cosseno. Cada etapa coberta por testes unitários e de integração.
+              </p>
+              <ul class="tags">
+                <li>Python</li><li>SQL</li><li>PostgreSQL</li><li>Forecasting</li><li>Recomendação</li><li>Testes</li>
+              </ul>
+              <div class="project-actions">
+                <a class="btn btn-primary btn-sm" href="https://github.com/pedropaulo-d/desafio-tecnico-lighthouse" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="project-card project-card--data">
+            <div class="project-media">
+              <img src="assets/project-soccer.webp" alt="Painel de análise de torneios da FIFA: fator casa, distribuição de gols por minuto de jogo, seleções com mais vitórias em Copas, artilheiros e decisões por pênalti" loading="lazy" width="1280" height="801" />
+            </div>
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
               </div>
-              <h4 class="project-title">Análise de Dados Históricos FIFA</h4>
+              <h4 class="project-title">Análise de Dados de Torneios da FIFA</h4>
               <p class="project-desc">
-                Projeto de análise exploratória usando Python, Pandas e Plotly para estudar tendências
-                de desempenho em torneios mundiais, com limpeza, tratamento e visualização de dados
-                históricos.
+                Análise exploratória de resultados históricos de torneios da FIFA com Python,
+                Pandas e Plotly. Limpeza e tratamento de três bases — resultados de partidas,
+                artilheiros e disputas de pênalti — e visualizações sobre o fator casa, a
+                distribuição de gols por minuto de jogo, as seleções mais vitoriosas em Copas e
+                o impacto de cobrar primeiro nas decisões por pênalti.
               </p>
               <ul class="tags">
-                <li>Python</li><li>Pandas</li><li>Plotly</li><li>Data Analysis</li>
+                <li>Python</li><li>Pandas</li><li>Plotly</li><li>EDA</li><li>Visualização</li>
               </ul>
               <div class="project-actions">
                 <a class="btn btn-primary btn-sm" href="https://github.com/pedropaulo-d/analyze-global-soccer-results" target="_blank" rel="noopener">

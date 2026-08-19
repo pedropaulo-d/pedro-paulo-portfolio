@@ -1,0 +1,12 @@
+# Editores
+.vscode/
+.idea/
+
+# Sistema operacional
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Arte de origem dos banners (PNGs de 1,5 MB).
+# O que vai para o site sao as versoes otimizadas em assets/project-*.webp.
+banner-*.png
