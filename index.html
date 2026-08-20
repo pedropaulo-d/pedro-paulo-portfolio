@@ -221,11 +221,8 @@
               </div>
               <h4 class="project-title">Pipeline de Dados da B3</h4>
               <p class="project-desc">
-                Pipeline de engenharia de dados ponta a ponta para o mercado financeiro brasileiro (B3):
-                ingestão com Python/yfinance, camada raw em Parquet no MinIO (S3), warehouse em DuckDB,
-                modelagem dimensional (Star Schema) com dbt e orquestração no Airflow. Calcula indicadores
-                como médias móveis, volatilidade e dividend yield, com execução idempotente e CI de
-                segurança (pip-audit, gitleaks).
+                Pipeline para o mercado financeiro brasileiro, com Python/yfinance, Parquet/MinIO,
+                modelagem dimensional, dbt e Airflow para gerar indicadores analíticos da B3.
               </p>
               <ul class="tags">
                 <li>Python</li><li>Airflow</li><li>dbt</li><li>DuckDB</li><li>MinIO</li><li>Docker</li>
@@ -250,12 +247,8 @@
               </div>
               <h4 class="project-title">Data Warehouse de Marketing (ELT)</h4>
               <p class="project-desc">
-                Pipeline ELT que consolida Meta Ads e Google Ads em um data warehouse PostgreSQL:
-                extração incremental pelas APIs nativas, orquestração no Airflow e transformações
-                com dbt nas camadas Bronze, Silver e Gold. A bronze guarda o payload bruto em JSONB
-                append-only, o que permite reprocessar tudo sem chamar a API de novo; a gold entrega um
-                Snowflake Schema com 6 dimensões encadeadas, SCD Tipo 2 para versionar o histórico das
-                campanhas e 72 testes de qualidade no dbt. Tudo containerizado com Docker.
+                Pipeline ELT que consolida Meta Ads e Google Ads em um Data Warehouse PostgreSQL, com
+                extração incremental, Airflow, dbt e camadas Bronze, Silver e Gold para análise por canal.
               </p>
               <ul class="tags">
                 <li>Python</li><li>Airflow</li><li>dbt</li><li>PostgreSQL</li><li>Docker</li><li>ELT</li>
@@ -280,11 +273,8 @@
               </div>
               <h4 class="project-title">Desafio Lighthouse · Dados e IA</h4>
               <p class="project-desc">
-                Desafio técnico ponta a ponta para a LH Nautical, do CSV bruto ao dashboard executivo:
-                gerador de schema escrito só com a biblioteca padrão do Python, carga no PostgreSQL via
-                COPY em transação única, análises em SQL com dimensão de calendário, previsão de demanda
-                validada em walk-forward (sem data leakage) e recomendação de produtos por similaridade
-                de cosseno. Cada etapa coberta por testes unitários e de integração.
+                Desafio de Dados e IA que transforma arquivos CSV em análises e dashboard executivo, com
+                PostgreSQL, SQL, previsão de demanda, recomendação e testes automatizados.
               </p>
               <ul class="tags">
                 <li>Python</li><li>SQL</li><li>PostgreSQL</li><li>Forecasting</li><li>Recomendação</li><li>Testes</li>
@@ -309,11 +299,8 @@
               </div>
               <h4 class="project-title">Análise de Dados de Torneios da FIFA</h4>
               <p class="project-desc">
-                Análise exploratória de resultados históricos de torneios da FIFA com Python,
-                Pandas e Plotly. Limpeza e tratamento de três bases — resultados de partidas,
-                artilheiros e disputas de pênalti — e visualizações sobre o fator casa, a
-                distribuição de gols por minuto de jogo, as seleções mais vitoriosas em Copas e
-                o impacto de cobrar primeiro nas decisões por pênalti.
+                Análise de torneios da FIFA com Python, Pandas e Plotly, integrando resultados, artilheiros
+                e pênaltis para revelar padrões de gols, fator casa e desempenho das seleções.
               </p>
               <ul class="tags">
                 <li>Python</li><li>Pandas</li><li>Plotly</li><li>EDA</li><li>Visualização</li>
@@ -352,8 +339,8 @@
             <div class="project-body">
               <h4 class="project-title">Landing Page · Petit Allegro</h4>
               <p class="project-desc">
-                Página de divulgação para uma escola de ballet infantil, construída em HTML, CSS e
-                JavaScript. Layout mobile-first, imagens otimizadas e estrutura semântica.
+                Landing page para escola de ballet infantil, criada com HTML, CSS e JavaScript, layout
+                mobile-first, imagens otimizadas, estrutura semântica e CTA para WhatsApp.
               </p>
               <ul class="tags">
                 <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Mobile-first</li>
@@ -372,8 +359,8 @@
             <div class="project-body">
               <h4 class="project-title">Site Institucional · Studio Helena Fernandes</h4>
               <p class="project-desc">
-                Site institucional publicado em domínio próprio, com páginas de serviços, localização
-                e FAQ. Layout responsivo, integração de agendamento e SEO básico.
+                Site institucional para studio de beleza, com páginas de serviços, localização e FAQ,
+                layout responsivo, SEO básico e integração de agendamento em domínio próprio.
               </p>
               <ul class="tags">
                 <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsivo</li><li>SEO</li>

@@ -270,7 +270,8 @@
       if (nav) { nav.hidden = !overflow; }
       if (!overflow) { return; }
       var x = rail.scrollLeft;
-      if (prevBtn) { prevBtn.disabled = x <= 1; }
+      // O padding de foco da trilha faz o primeiro snap terminar em ~4px.
+      if (prevBtn) { prevBtn.disabled = x <= 6; }
       if (nextBtn) { nextBtn.disabled = x >= maxScroll() - 1; }
     }
 
