@@ -61,7 +61,7 @@
   <!-- ===== Fonts (Google Fonts) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ===== Styles ===== -->
   <link rel="stylesheet" href="css/styles.css" />
@@ -99,8 +99,8 @@
       <nav class="nav" id="primary-nav" aria-label="Navegação principal">
         <ul class="nav-list">
           <li><a class="nav-link" href="#projetos">Projetos</a></li>
-          <li><a class="nav-link" href="#stack">Stack</a></li>
           <li><a class="nav-link" href="#experiencia">Experiência</a></li>
+          <li><a class="nav-link" href="#stack">Stack</a></li>
           <li><a class="nav-link" href="#formacao">Formação</a></li>
           <li><a class="nav-link" href="#sobre">Sobre</a></li>
           <li><a class="nav-link" href="#contato">Contato</a></li>
@@ -146,7 +146,8 @@
           </h1>
 
           <p class="hero-subtitle">
-            Pipelines ETL/ELT, integração de APIs e modelagem dimensional. Da ingestão bruta ao
+            Pipelines ETL/ELT para dados de marketing (Meta Ads e Google Ads) e geoespaciais
+            (PostGIS), com modelagem dimensional e testes automatizados, da ingestão bruta ao
             indicador pronto para decisão.
           </p>
 
@@ -212,14 +213,21 @@
           <div class="cards-rail" data-carousel-rail role="region" aria-label="Projetos de dados e engenharia — role para o lado para ver mais" tabindex="0">
           <!-- Projeto recente em destaque -->
           <article class="project-card project-card--data">
-            <div class="project-media">
-              <img src="assets/project-b3.webp" alt="Diagrama do B3 Data Pipeline: ingestão pela API yfinance, camada raw em Parquet no MinIO, warehouse em DuckDB, modelagem Star Schema com dbt e indicadores de médias móveis, volatilidade, drawdown e dividend yield" loading="lazy" width="1280" height="801" />
+            <!-- Capa alternável: sem JS, os botões ficam ocultos e só o diagrama aparece -->
+            <div class="project-media" data-media-toggle>
+              <img src="assets/project-b3.webp" alt="Diagrama do B3 Data Pipeline: ingestão pela API yfinance, camada raw em Parquet no MinIO, warehouse em DuckDB, modelagem Star Schema com dbt e indicadores de médias móveis, volatilidade, drawdown e dividend yield" loading="lazy" width="1280" height="801" data-media-panel="arquitetura" />
+              <img src="assets/project-b3-dashboard.webp" alt="Dashboard B3 no Streamlit: retorno acumulado, máximo drawdown, volatilidade e dividend yield de ABEV3, com gráfico de preço e médias móveis de 7 a 200 dias" loading="lazy" width="1152" height="720" data-media-panel="dashboard" hidden />
+              <div class="media-switch" role="group" aria-label="Alternar a capa do projeto">
+                <button type="button" aria-pressed="true" data-media-show="arquitetura">Arquitetura</button>
+                <button type="button" aria-pressed="false" data-media-show="dashboard">Dashboard</button>
+              </div>
             </div>
             <div class="project-body">
               <div class="data-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
               </div>
               <h4 class="project-title">Pipeline de Dados da B3</h4>
+              <p class="project-facts">6 tickers · 5 anos de histórico · 49 testes dbt</p>
               <p class="project-desc">
                 Pipeline para o mercado financeiro brasileiro, com Python/yfinance, Parquet/MinIO,
                 modelagem dimensional, dbt e Airflow para gerar indicadores analíticos da B3.
@@ -232,7 +240,12 @@
                   <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.3 18 4.6 18 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                   GitHub
                 </a>
+                <a class="btn btn-ghost btn-sm" href="https://b3-data-pipeline-jzsx7mgpas7obxzseykg8g.streamlit.app/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  Dashboard
+                </a>
               </div>
+              <p class="project-note">O app gratuito hiberna sem acessos: pode levar até 1 min para abrir.</p>
             </div>
           </article>
 
@@ -246,6 +259,7 @@
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
               </div>
               <h4 class="project-title">Data Warehouse de Marketing (ELT)</h4>
+              <p class="project-facts">11 modelos dbt · 110 testes dbt · 985 testes Python</p>
               <p class="project-desc">
                 Pipeline ELT que consolida Meta Ads e Google Ads em um Data Warehouse PostgreSQL, com
                 extração incremental, Airflow, dbt e camadas Bronze, Silver e Gold para análise por canal.
@@ -272,6 +286,7 @@
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
               </div>
               <h4 class="project-title">Desafio Lighthouse · Dados e IA</h4>
+              <p class="project-facts">24 CSVs · 433.424 linhas · 129 testes</p>
               <p class="project-desc">
                 Desafio de Dados e IA que transforma arquivos CSV em análises e dashboard executivo, com
                 PostgreSQL, SQL, previsão de demanda, recomendação e testes automatizados.
@@ -298,6 +313,7 @@
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
               </div>
               <h4 class="project-title">Análise de Dados de Torneios da FIFA</h4>
+              <p class="project-facts">47.399 partidas · 44.362 gols · 1872–2024</p>
               <p class="project-desc">
                 Análise de torneios da FIFA com Python, Pandas e Plotly, integrando resultados, artilheiros
                 e pênaltis para revelar padrões de gols, fator casa e desempenho das seleções.
@@ -334,16 +350,17 @@
           <!-- Card 1 -->
           <article class="project-card">
             <div class="project-media">
-              <img src="assets/project-ballet.webp" alt="Prévia da landing page Petit Allegro, de ballet infantil em Porto Velho" loading="lazy" width="1600" height="795" />
+              <img src="assets/project-ballet.webp" alt="Prévia da landing page Petit Allegro, de ballet infantil em Porto Velho, com o próximo espetáculo em destaque no topo" loading="lazy" width="1600" height="900" />
             </div>
             <div class="project-body">
               <h4 class="project-title">Landing Page · Petit Allegro</h4>
               <p class="project-desc">
-                Landing page para escola de ballet infantil, criada com HTML, CSS e JavaScript, layout
-                mobile-first, imagens otimizadas, estrutura semântica e CTA para WhatsApp.
+                Landing page de ballet infantil em escolas parceiras de Porto Velho: turmas por idade,
+                espetáculo com contagem regressiva, mapa dos locais, FAQ e formulário que indica a
+                turma pelo WhatsApp.
               </p>
               <ul class="tags">
-                <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Mobile-first</li>
+                <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Mobile-first</li><li>JSON-LD</li>
               </ul>
               <div class="project-actions">
                 <a class="btn btn-primary btn-sm" href="https://karolini-fernandes.vercel.app/" target="_blank" rel="noopener">Ver projeto</a>
@@ -354,13 +371,14 @@
           <!-- Card 2 -->
           <article class="project-card">
             <div class="project-media">
-              <img src="assets/project-beleza.webp" alt="Prévia do site Studio Helena Fernandes, de beleza e cosméticos" loading="lazy" width="1600" height="741" />
+              <img src="assets/project-beleza.webp" alt="Prévia do site do Studio Helena Fernandes, studio de beleza em Manaus especializado em coloração, mechas e cronogramas capilares" loading="lazy" width="1600" height="900" />
             </div>
             <div class="project-body">
               <h4 class="project-title">Site Institucional · Studio Helena Fernandes</h4>
               <p class="project-desc">
-                Site institucional para studio de beleza, com páginas de serviços, localização e FAQ,
-                layout responsivo, SEO básico e integração de agendamento em domínio próprio.
+                Site de studio de beleza em Manaus, em domínio próprio: serviços com preço e abas por
+                categoria, status "aberto agora" no fuso local, galeria de resultados, combos e
+                formulário que monta o agendamento no WhatsApp.
               </p>
               <ul class="tags">
                 <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Responsivo</li><li>SEO</li>
@@ -378,9 +396,72 @@
     </section>
 
     <!-- ============================================================= -->
+    <!-- EXPERIÊNCIA                                                   -->
+    <!-- ============================================================= -->
+    <section class="section section--alt" id="experiencia">
+      <div class="container">
+        <header class="section-header" data-animate>
+          <p class="eyebrow">Trajetória</p>
+          <h2 class="section-title">Minha trajetória até aqui.</h2>
+        </header>
+
+        <ol class="timeline" data-animate>
+          <li class="timeline-item" data-animate>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-top">
+                <h3 class="timeline-role">Analista de Integração e Dados</h3>
+                <span class="period">Nov 2024 — Mar 2026</span>
+              </div>
+              <p class="timeline-company">TraQ!</p>
+              <p class="timeline-desc">
+                Desenvolvimento e manutenção de pipelines ETL/ELT, integração de dados via APIs de Meta
+                Ads e Google Ads, automações com Python, n8n e Make, além de rotinas em SQL e Python
+                para extração, limpeza, modelagem e disponibilização de dados para equipes de operação.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item" data-animate>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-top">
+                <h3 class="timeline-role">Estagiário</h3>
+                <span class="period">Mar 2023 — Jul 2024</span>
+              </div>
+              <p class="timeline-company">CENSIPAM · Sistema de Proteção da Amazônia</p>
+              <p class="timeline-desc">
+                Atuação com processamento de dados georreferenciados, scripts Python e SQL, tratamento
+                de bases espaciais em PostGIS e apoio à estruturação de dados para sistemas de
+                visualização WebGIS.
+              </p>
+            </div>
+          </li>
+
+          <li class="timeline-item" data-animate>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <div class="timeline-top">
+                <h3 class="timeline-role">Estagiário de Suporte Técnico</h3>
+                <span class="period">Out 2022 — Mai 2023</span>
+              </div>
+              <p class="timeline-company">Brasil Digital · Provedor de Internet</p>
+              <p class="timeline-desc">
+                Primeiro estágio na área de tecnologia: diagnóstico e resolução de problemas de
+                conectividade, desenvolvimento de scripts Python para automatizar processos de suporte
+                (reduzindo o tempo de resposta) e colaboração com as equipes de engenharia e manutenção
+                para implementar melhorias técnicas na rede.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
     <!-- STACK                                                         -->
     <!-- ============================================================= -->
-    <section class="section section--alt" id="stack">
+    <section class="section" id="stack">
       <div class="container">
         <div class="stack-top">
           <header class="section-header" data-animate>
@@ -466,69 +547,6 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- EXPERIÊNCIA                                                   -->
-    <!-- ============================================================= -->
-    <section class="section" id="experiencia">
-      <div class="container">
-        <header class="section-header" data-animate>
-          <p class="eyebrow">Trajetória</p>
-          <h2 class="section-title">Minha trajetória até aqui.</h2>
-        </header>
-
-        <ol class="timeline" data-animate>
-          <li class="timeline-item" data-animate>
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <div class="timeline-top">
-                <h3 class="timeline-role">Analista de Integração e Dados</h3>
-                <span class="period">Nov 2024 — Mar 2026</span>
-              </div>
-              <p class="timeline-company">TraQ!</p>
-              <p class="timeline-desc">
-                Desenvolvimento e manutenção de pipelines ETL/ELT, integração de dados via APIs de Meta
-                Ads e Google Ads, automações com Python, n8n e Make, além de rotinas em SQL e Python
-                para extração, limpeza, modelagem e disponibilização de dados para equipes de operação.
-              </p>
-            </div>
-          </li>
-
-          <li class="timeline-item" data-animate>
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <div class="timeline-top">
-                <h3 class="timeline-role">Estagiário</h3>
-                <span class="period">Mar 2023 — Jul 2024</span>
-              </div>
-              <p class="timeline-company">CENSIPAM · Sistema de Proteção da Amazônia</p>
-              <p class="timeline-desc">
-                Atuação com processamento de dados georreferenciados, scripts Python e SQL, tratamento
-                de bases espaciais em PostGIS e apoio à estruturação de dados para sistemas de
-                visualização WebGIS.
-              </p>
-            </div>
-          </li>
-
-          <li class="timeline-item" data-animate>
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <div class="timeline-top">
-                <h3 class="timeline-role">Estagiário de Suporte Técnico</h3>
-                <span class="period">Out 2022 — Mai 2023</span>
-              </div>
-              <p class="timeline-company">Brasil Digital · Provedor de Internet</p>
-              <p class="timeline-desc">
-                Primeiro estágio na área de tecnologia: diagnóstico e resolução de problemas de
-                conectividade, desenvolvimento de scripts Python para automatizar processos de suporte
-                (reduzindo o tempo de resposta) e colaboração com as equipes de engenharia e manutenção
-                para implementar melhorias técnicas na rede.
-              </p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============================================================= -->
     <!-- FORMAÇÃO & CERTIFICAÇÕES                                      -->
     <!-- ============================================================= -->
     <section class="section section--alt" id="formacao">
@@ -582,7 +600,7 @@
       <div class="container about-grid">
         <div class="about-content" data-animate>
           <p class="eyebrow">Sobre mim</p>
-          <h2 class="section-title">Engenharia de dados aplicada a problemas reais.</h2>
+          <h2 class="section-title">De APIs de anúncios a bases espaciais da Amazônia.</h2>
           <p class="about-text">
             Sou Pedro Paulo Lopes Alves, graduando em Sistemas de Informação e atuo com dados desde
             2022. Trabalho com pipelines ETL/ELT, integração de APIs, modelagem dimensional, automação
@@ -598,14 +616,6 @@
             Star Schema e camadas de warehouse — com foco em execução idempotente, testes de qualidade
             e código versionado.
           </p>
-
-          <ul class="stats">
-            <li class="stat-card"><strong>3+</strong><span>anos de experiência prática com tecnologia e dados</span></li>
-            <li class="stat-card"><strong>SI</strong><span>graduando em Sistemas de Informação</span></li>
-            <li class="stat-card"><strong>ETL</strong><span>pipelines, integração de APIs e automação</span></li>
-            <li class="stat-card"><strong>SQL</strong><span>modelagem dimensional e PostgreSQL</span></li>
-            <li class="stat-card"><strong>RO</strong><span>Porto Velho, Rondônia</span></li>
-          </ul>
         </div>
 
         <aside class="about-visual" data-animate>
@@ -627,7 +637,7 @@
       <div class="container">
         <header class="section-header section-header--center" data-animate>
           <p class="eyebrow">Contato</p>
-          <h2 class="section-title">Entre em contato.</h2>
+          <h2 class="section-title">Tem uma vaga em dados? Vamos conversar.</h2>
           <p class="section-lead">
             Aberto a oportunidades em Engenharia de Dados, Analytics Engineering e Análise de Dados,
             presenciais ou remotas. Para conversar sobre uma vaga ou sobre os projetos, use qualquer
@@ -662,8 +672,6 @@
           <li><span class="ci-label">E-mail</span><a href="mailto:paulopedro.dev@gmail.com">paulopedro.dev@gmail.com</a></li>
           <li><span class="ci-label">Discord</span><span class="discord-handle">p.paulo</span></li>
           <li><span class="ci-label">Localização</span><span>Porto Velho, RO</span></li>
-          <li><span class="ci-label">LinkedIn</span><a href="https://linkedin.com/in/pedropaulo-d" target="_blank" rel="noopener">in/pedropaulo-d</a></li>
-          <li><span class="ci-label">GitHub</span><a href="https://github.com/pedropaulo-d" target="_blank" rel="noopener">@pedropaulo-d</a></li>
         </ul>
       </div>
     </section>
@@ -680,8 +688,8 @@
       <nav aria-label="Links rápidos do rodapé">
         <ul class="footer-links">
           <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#stack">Stack</a></li>
           <li><a href="#experiencia">Experiência</a></li>
+          <li><a href="#stack">Stack</a></li>
           <li><a href="#formacao">Formação</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#contato">Contato</a></li>

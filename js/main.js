@@ -251,9 +251,10 @@
   }
 
   /* ----------------------------------------------------------------------
-     8) Carrossel scroll-snap (subgrupo de Landing Pages)
-        — setas no desktop, swipe no mobile; a navegação some quando todos
-          os cards já cabem (sem overflow). Robusto a novos <article>.
+     8) Carrossel scroll-snap (subgrupos de projetos)
+        — swipe no mobile; no desktop o CSS vira grade 2 × 2 e a navegação
+          some porque todos os cards já cabem (sem overflow). Robusto a
+          novos <article>.
      ---------------------------------------------------------------------- */
   Array.prototype.forEach.call(document.querySelectorAll('[data-carousel]'), function (carousel) {
     var rail = carousel.querySelector('[data-carousel-rail]');
@@ -293,5 +294,26 @@
 
     window.addEventListener('resize', update);
     update();
+  });
+
+  /* ----------------------------------------------------------------------
+     9) Capa alternável do card (arquitetura × dashboard)
+        — sem JS os botões ficam ocultos (CSS) e só a primeira imagem aparece.
+     ---------------------------------------------------------------------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-media-toggle]'), function (media) {
+    var panels = media.querySelectorAll('[data-media-panel]');
+    var buttons = media.querySelectorAll('[data-media-show]');
+
+    Array.prototype.forEach.call(buttons, function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-media-show');
+        Array.prototype.forEach.call(panels, function (panel) {
+          panel.hidden = panel.getAttribute('data-media-panel') !== target;
+        });
+        Array.prototype.forEach.call(buttons, function (b) {
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+      });
+    });
   });
 })();
